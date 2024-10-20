@@ -3,10 +3,10 @@ using System;
 class Program
 {
     static void Main(string[] args)
-    {   
+    {
         Console.WriteLine("---------------------------------------------");
         //order 1 
-        Address address1 = new Address ("98 Pleasant Ave.", "Bristol", "CT", "USA");
+        Address address1 = new Address("98 Pleasant Ave.", "Bristol", "CT", "USA");
         Customer customer1 = new Customer("Nice Guy", address1);
 
         double order1ShippingCost = customer1.GetShippingCost();
@@ -21,18 +21,18 @@ class Program
         double order1Total = order1.CalculateTotal();
 
         //display order 1
-        order1.DisplayShippingLabel(); 
+        order1.DisplayShippingLabel();
         Console.WriteLine();
         order1.DisplayPackingLabel();
         Console.WriteLine();
-        order1.DisplayCosts(order1Subtotal ,order1ShippingCost, order1Total);
+        order1.DisplayCosts(order1Subtotal, order1ShippingCost, order1Total);
 
 
         Console.WriteLine("---------------------------------------------");
 
 
         //order 2
-        Address address2 = new Address ("Rua Garcia de Orta", "Lisbon", "Lisbon", "Portugal");
+        Address address2 = new Address("Rua Garcia de Orta", "Lisbon", "Lisbon", "Portugal");
         Customer customer2 = new Customer("Joao Garcia", address2);
 
         double order2ShippingCost = customer2.GetShippingCost();
@@ -50,12 +50,12 @@ class Program
 
 
         //display order 2
-        order2.DisplayShippingLabel(); 
+        order2.DisplayShippingLabel();
         Console.WriteLine();
         order2.DisplayPackingLabel();
         Console.WriteLine();
         order2.DisplayCosts(order2Subtotal, order2ShippingCost, order2Total);
         Console.WriteLine("---------------------------------------------");
 
-    }   
+    }
 }
