@@ -1,94 +1,69 @@
 using System;
-// For exceeding requirements, I asked the user if they would like to save their goals before quitting. 
-// I also made sure that no additional points were rewarded if completed goals were attempted to be recorded again. 
+// as a stretch, I tried to keep a log fo how many times activities were performed. 
+// I tried to make sure that there were no prompts repeated. 
+
 class Program
 {
     static void Main(string[] args)
     {
-        AllGoals allGoals = new AllGoals();
-        int userMainMenuSelection = 0;
+        int breatheCount = 0;
+        int reflectCount = 0;
+        int listCount = 0;
 
-        Console.Clear();
-        Console.WriteLine("Welcome to the Goal Tracking App!");
+        // Console.WriteLine("Hello Develop04 World!");
+        Console.WriteLine("Welcome to the Mindfulness Program!");
         Console.WriteLine();
-
-        while (userMainMenuSelection != 6)
+        bool running = true;
+        while (running)
         {
-            Menu menu = new Menu();
-            allGoals.DisplayPoints(allGoals.getTotalPoints());
+            Console.WriteLine("Please select one of the following activities: ");
+            Console.WriteLine("1. Breathing Activity");
+            Console.WriteLine("2. Reflecting Activity");
+            Console.WriteLine("3. Listing Activity");
+            Console.WriteLine("4. Quit");
             Console.WriteLine();
-            menu.DisplayMainMenu();
-            userMainMenuSelection = int.Parse(Console.ReadLine());
-            Console.Clear();
+            Console.Write("What would you like to do? ");
+            int choice = int.Parse(Console.ReadLine());
+            Console.WriteLine();
 
-            switch (userMainMenuSelection)
-            {
+            switch (choice)
+            {   
+                //Breathing
                 case 1:
-                    menu.DisplayNewGoalMenu();
-                    int userNewGoalSelection = int.Parse(Console.ReadLine());
                     Console.Clear();
-                    Goal goal = null;
-                    if (userNewGoalSelection == 1)
-                    {
-                        goal = new SimpleGoal();
-                        goal.DisplayGoalName();
-                        goal.DisplayGoalDescription();
-                        goal.DisplayGoalPoints();
-                    }
-                    else if (userNewGoalSelection == 2)
-                    {
-                        goal = new EternalGoal();
-                        goal.DisplayGoalName();
-                        goal.DisplayGoalDescription();
-                        goal.DisplayGoalPoints();
-                    }
-                    else
-                    {
-                        goal = new CheckListGoal();
-                        goal.DisplayGoalName();
-                        goal.DisplayGoalDescription();
-                        goal.DisplayGoalPoints();
-                    }
-
-                    if (goal != null)
-                    {
-                        allGoals.addGoal(goal);
-                    }
+                    BreathingActivity breathing = new BreathingActivity();
+                    breathing.RunBreathingActivity();
+                    breatheCount++;
                     break;
-
+                //Reflecting
                 case 2:
-                    allGoals.DisplayGoals();
+                    Console.Clear();
+                    ReflectingActivity reflection = new ReflectingActivity();
+                    reflection.RunReflectingActivity();
+                    reflectCount++;
                     break;
-
+                //Listing
                 case 3:
-                    allGoals.SaveGoals();
+                    Console.Clear();
+                    ListingActivity listing = new ListingActivity();
+                    listing.RunListingActivity();
+                    listCount++;
                     break;
-
+                //quit
                 case 4:
-                    allGoals.LoadGoals();
-                    break;
-
-                case 5:
-                    allGoals.DisplayGoalRecordEvent();
-                    break;
-
-                case 6:
-                    Console.Write("Do you want to save before you quit (y/n)? ");
-                    string userInput = Console.ReadLine();
-                    if (userInput == "y")
-                    {
-                        allGoals.SaveGoals();
-                    }
-
+                    running = false;
+                    Console.WriteLine("Great job! You completed the following activities: ");
+                    Console.WriteLine($"Breathing Activity: {breatheCount} times");
+                    Console.WriteLine($"Reflecting Activity: {reflectCount} times");
+                    Console.WriteLine($"Listing Activity: {listCount} times");
                     Console.WriteLine();
-                    Console.WriteLine("Thank you! Goodbye. ");
+                    Console.WriteLine("Thank you. Have a nice day!");
                     break;
-
                 default:
-                    Console.WriteLine("Please select a valid option.");
+                    Console.WriteLine("Invalid input. Please choose one of the following activities.");
                     break;
-
             }
+     
         }
     }
 }
